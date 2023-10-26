@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: task-app-deployment
+  labels:
+    app: task-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: task-app
+  template:
+    metadata:
+      labels:
+        app: task-app
+    spec:
+      containers:
+      - name: task-app
+        image: frozencrits/task-app:latest
+        ports:
+        - containerPort: 3000
+        env:
+          - name: MONGODB_USERNAME
+            value: root
+          - name: MONGODB_PASSWORD
+            value: example
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: task-app-service
+spec:
+  type: NodePort
+  selector:
+    app: task-app
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+      nodePort: 30100
