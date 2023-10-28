@@ -1,10 +1,12 @@
 const request = require('supertest');
 const app = require('../app');
 const Task = require("../models/task");
+const mongoose = require("mongoose");
 
 describe('Sample Test', () => {
 
   describe("GET /", () => {
+    afterAll(() => mongoose.connection.close())
     it("Should return all products", async () => {
       const task = await Task.create({
         title: "test task",
