@@ -9,8 +9,7 @@ services:
   task-app:
     build: ./
     environment:
-      MONGODB_USERNAME: root
-      MONGODB_PASSWORD: example
+      MONGODB_URL: mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@mongodb:27017/task-k8s?directConnection=true&authSource=admin
     ports:
       - 3000:3000
     depends_on:
