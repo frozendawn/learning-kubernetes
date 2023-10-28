@@ -24,6 +24,8 @@ spec:
             value: root
           - name: MONGODB_PASSWORD
             value: example
+          - name: MONGODB_URL
+            value: mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@mongo-service:27017/task-k8s?directConnection=true&authSource=admin
 ---
 apiVersion: v1
 kind: Service
