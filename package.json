@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "test": "jest"
+    "test": "cross-env MONGODB_URL=\"mongodb://localhost:27017/task-k8s-test?directConnection=true&authSource=admin\" && jest"
   },
   "keywords": [],
   "author": "",
