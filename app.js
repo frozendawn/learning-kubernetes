@@ -15,20 +15,38 @@ mongoose.connect(MONGODB_URL, {
 app.use(bodyParser.json({ type: 'application/json' }))
 
 app.get("/", async (req, res) => {
-  const result = await Task.find();
-
-  return res.status(200).json(result);
+  try {
+    const result = await Task.find();
+    return res.status(200).json(result);
+  } catch (error) {
+    next(error)
+  }
 })
 
 app.post("/create-task", async (req, res) => {
+  try {
+    const { title, description } = req.body;
+    const result = await Task.create({
+      title,
+      description
+    });
 
-  const { title, description } = req.body;
-  const result = await Task.create({
-    title,
-    description
-  });
+    return res.status(201).json(result);
+  } catch (error) {
+    next(error)
+  }
+})
 
-  return res.status(201).json(result);
+app.get("/error", async (req, res, next) => {
+  try {
+    throw new Error("Error from promise")
+  } catch (error) {
+    next(error)
+  }
+})
+
+app.use((err, req, res, next) => {
+  res.status(500).send('Internal server error')
 })
 
 module.exports = app;
