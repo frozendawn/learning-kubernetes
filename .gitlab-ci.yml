@@ -1,9 +1,11 @@
 build-job:
+  image: ubuntu-latest
   stage: build
   script:
     - npm install
 
 test-job1:
+  image: ubuntu-latest
   stage: test
   script:
     - npm test
