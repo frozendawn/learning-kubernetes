@@ -9,5 +9,7 @@ test-job1:
   services:
     - mongo
   stage: test
+  before_script:
+    - npm install
   script:
     - npm test
