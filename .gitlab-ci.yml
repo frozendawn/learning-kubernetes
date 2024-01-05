@@ -6,6 +6,8 @@ build-job:
 
 test-job1:
   image: node:alpine
+  services:
+    - mongo
   stage: test
   script:
     - npm test
