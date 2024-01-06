@@ -1,5 +1,5 @@
 variables:
-  MONGODB_URL: "mongodb://localhost:27017/task-k8s"
+  MONGODB_URL: "mongo:27017/task-k8s"
 
 build-job:
   image: node:alpine
