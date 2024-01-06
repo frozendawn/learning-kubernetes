@@ -1,3 +1,6 @@
+variables:
+  MONGODB_URL: "mongodb://localhost:27017/task-k8s"
+
 build-job:
   image: node:alpine
   stage: build
