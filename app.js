@@ -6,6 +6,7 @@ const bodyParser = require('body-parser')
 const app = express();
 
 const MONGODB_URL = process.env.MONGODB_URL || 'mongodb://localhost:27017/task-k8s?directConnection=true&authSource=admin';
+console.log("MONGODB_URL: ", MONGODB_URL);
 
 mongoose.connect(MONGODB_URL, {
   useNewUrlParser: true,
