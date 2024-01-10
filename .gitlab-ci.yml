@@ -20,7 +20,7 @@ test-job1:
 
 docker-build:
   image: docker
-  stage: docker-build
+  stage: docker_build
   services:
     - docker:24.0.7-dind
   script:
