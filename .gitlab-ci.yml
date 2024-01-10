@@ -1,3 +1,6 @@
+stages:
+  - "docker-build"
+
 variables:
   MONGODB_URL: mongodb://mongodb:27017/task-k8s
 
@@ -20,7 +23,7 @@ test-job1:
 
 docker-build:
   image: docker
-  stage: docker_build
+  stage: docker-build
   services:
     - docker:24.0.7-dind
   script:
