@@ -17,3 +17,13 @@ test-job1:
     - npm install
   script:
     - npm test
+
+docker-build:
+  image: docker
+  services:
+    - docker:24.0.7-dind
+  script:
+    - echo "Building Docker image..."
+    - docker login -u frozencrits -p $CI_JOB_TOKEN
+    - docker build -t frozencrits/task-app:latest .
+    - docker push frozencrits/task-app:latest
