@@ -30,6 +30,6 @@ docker-build:
     - docker:24.0.7-dind
   script:
     - echo "Building Docker image..."
-    - docker login -u frozencrits -p $CI_JOB_TOKEN
+    - docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD
     - docker build -t frozencrits/task-app:latest .
     - docker push frozencrits/task-app:latest
