@@ -33,3 +33,10 @@ docker-build:
     - docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD
     - docker build -t frozencrits/task-app:latest .
     - docker push frozencrits/task-app:latest
+    - echo Docker commit tag:$CI_COMMIT_TAG
+    - |
+      if [ -n "$CI_COMMIT_TAG" ]; then
+      echo "Tagging docker image with gitlab tag: $CI_COMMIT_TAG ..."
+      docker tag frozencrits/task-app:latest frozencrits/task-app:$CI_COMMIT_TAG
+      docker push $frozencrits/task-app:$CI_COMMIT_TAG
+      fi
